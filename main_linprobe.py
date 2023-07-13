@@ -25,6 +25,15 @@ import torchvision.datasets as datasets
 
 import timm
 
+TORCH_MAJOR = int(torch.__version__.split('.')[0])
+TORCH_MINOR = int(torch.__version__.split('.')[1])
+
+
+if TORCH_MAJOR == 1 and TORCH_MINOR < 8:
+    from torch._six import container_abcs
+else:
+    import collections.abc as container_abcs
+
 assert timm.__version__ == "0.3.2" # version check
 from timm.models.layers import trunc_normal_
 
